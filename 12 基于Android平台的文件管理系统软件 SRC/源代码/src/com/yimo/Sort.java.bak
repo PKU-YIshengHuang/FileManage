@@ -1,0 +1,157 @@
+package com.yimo;
+
+import java.io.File;
+import java.util.Arrays;
+import java.util.Comparator;
+
+/**
+ * 实现文件列表的排序，如按时间排序（文件最后一次被修改的时间），按名称排序，
+ * 
+ * @author admin
+ * 
+ */
+public class Sort{
+	/**
+	 * 默认构造器，sortType类型为SortType.STSTEMDEFULT。
+	 */
+	Sort(){
+
+	}
+
+	Sort(SortType sortType){
+		this.sortType=sortType;
+	}
+
+	/**
+	 * 静态排序方法，files表示要排序的文件数组，sortType表示排序方式,
+	 * SortType.STSTEMDEFULT表示系统默认排序方式，LASTMOTIFIERTIME表示按最近修改时间排序， NAME表示按名称排序。
+	 * 
+	 * @param files
+	 * @param sortType
+	 * @return
+	 */
+	public void sort(File[] files){
+		switch(this.sortType){
+		case STSTEMDEFULT:
+			break;
+		case LASTMOTIFIERTIME:
+			this.sortByLastModifieredTime(files);
+			break;
+		case NAME:
+			this.sortByName(files);
+			break;
+		case FILIANDDIRECTORY:
+			this.sortByFileAndDirectory(files);
+			break;
+		case SIZE:
+			this.sortBySize(files);
+			break;
+		default:
+		}
+
+	}
+
+	private void sortBySize(File[] files){
+		Arrays.sort(files,new Comparator<File>()
+		{
+			public int compare(File file1,File file2){
+				if(file1.length()>file2.length())
+					return 1;
+				if(file1.length()<file2.length())
+					return -1;
+				return 0;
+			}
+		});
+	}
+
+	public SortType getSortType(){
+		return sortType;
+	}
+
+	public void setSortType(SortType sortType){
+		this.sortType=sortType;
+	}
+
+	/**
+	 * 排序文件列表(复制过来的）
+	 * */
+	private void sortFiles(File[] files){
+		// sort按从小到大进行排序。
+		Arrays.sort(files,new Comparator<File>()
+		{
+			public int compare(File file1,File file2){
+				if(file1.isDirectory()&&file2.isDirectory())
+					return 1;
+				if(file2.isDirectory())
+					return 1;
+				return -1;
+			}
+		});
+	}
+
+	/**
+	 * 按文件夹与文件进行排序,文件夹排前面，文件排后面。
+	 * 
+	 * @param files
+	 */
+	private static void sortByFileAndDirectory(File[] files){
+		Arrays.sort(files,new Comparator<File>()
+		{
+			public int compare(File file1,File file2){
+				if(file1.isDirectory()&&file2.isFile())
+					return -1;
+				if(file1.isFile()&&file2.isDirectory())
+					return 1;
+				return 0;
+			}
+		});
+	}
+
+	/**
+	 * 按文件名称排序
+	 */
+	private static void sortByName(File[] files){
+		Arrays.sort(files,new Comparator<File>()
+		{
+			public int compare(File file1,File file2){
+				if(file1.getName().compareTo(file2.getName())>0)
+					return 1;
+				if(file1.getName().compareTo(file2.getName())==0)
+					return 0;
+				return -1;
+			}
+		});
+	}
+
+	/**
+	 * 按最近修改时间排,最新时间处于数组首位。
+	 * 
+	 * @param files
+	 * @return
+	 */
+	private static void sortByLastModifieredTime(File[] files){
+		Arrays.sort(files,new Comparator<File>()
+		{
+			public int compare(File file1,File file2){
+				if(file1.lastModified()>file2.lastModified())
+					return -1;
+				if(file1.lastModified()==file2.lastModified())
+					return 0;
+				return 1;
+			}
+		});
+	}
+
+	// 默认按最后修改时间
+	private SortType sortType=SortType.STSTEMDEFULT;
+}
+
+/**
+ * STSTEMDEFULT:系统默认的排序方式
+ * 
+ * @author admin
+ * 
+ */
+enum SortType{
+	LASTMOTIFIERTIME,NAME,FILIANDDIRECTORY,STSTEMDEFULT,SIZE;
+}

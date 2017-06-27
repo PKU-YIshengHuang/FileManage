@@ -1,0 +1,501 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0061)http://blog.csdn.net/chengyingzhilian/article/details/7833967 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET</title>
+
+<meta name="description" content="Environment 常用方法： * 方法：getDataDirectory()解释：返回 File ，获取 Android 数据目录。* 方法：getDownloadCacheDirectory()解释：返回 File ，获取 Android 下载/缓存内容目录。* 方法：getExternalStorageDirectory()解释：返回 File ，获取外部存储">
+<script type="text/javascript" async="" src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/ga.js"></script><script src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/jquery.js" type="text/javascript"></script>
+<script src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/plugins.js" type="text/javascript"></script>
+<script src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/common.js" type="text/javascript"></script>
+<script type="text/javascript" src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/ad.js"></script>
+<link rel="Stylesheet" type="text/css" href="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/style.css">
+<link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="http://blog.csdn.net/chengyingzhilian/rss/list">
+<link rel="shortcut icon" href="http://blog.csdn.net/favicon.ico">
+<link type="text/css" rel="stylesheet" href="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/default_big.css">
+</head>
+<body>
+<script src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/pub_topnav_2011.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/navtop_2012.css">
+<div class="nav_top_2011">
+<p><span style="color:red;">您还未登录！</span>|<a href="https://passport.csdn.net/account/login" target="_top">登录</a>|<a href="https://passport.csdn.net/account/register" target="_top">注册</a>|<a href="https://passport.csdn.net/help/faq" target="_blank">帮助</a></p><ul>
+<li><a href="http://www.csdn.net/" target="_blank">首页</a></li>
+<li><a href="http://news.csdn.net/" target="_blank">业界</a></li>
+<li><a href="http://mobile.csdn.net/" target="_blank">移动</a></li>
+<li><a href="http://cloud.csdn.net/" target="_blank">云计算</a></li>
+<li><a href="http://sd.csdn.net/" target="_blank">研发</a></li>
+<li><a href="http://bbs.csdn.net/" target="_blank">论坛</a></li>
+<li><a href="http://blog.csdn.net/" target="_blank">博客</a></li>
+<li><a href="http://download.csdn.net/" target="_blank">下载</a></li>
+<li class="more"><h2 id="topnav_btnmore" onclick="showNavMore(this)"><a href="javascript:void(0);">更多</a></h2>
+<div id="topnav_hidlist">
+<iframe name="nav_frm" src="about:blank" width="92" height="178" scrolling="no" frameborder="no"></iframe>
+</div>
+</li>
+</ul>
+</div>
+
+
+<div id="container">
+<div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h1><a href="http://blog.csdn.net/chengyingzhilian">承影</a></h1>
+            <h2>厚积薄发，璀璨耀世！！！</h2>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg"></div>
+    <div class="navigator">
+        <ul>
+            <li id="btnContents"><a href="http://blog.csdn.net/chengyingzhilian?viewmode=contents"><span><img src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/ico_list.gif">目录视图</span></a></li>
+            <li id="btnView"><a href="http://blog.csdn.net/chengyingzhilian?viewmode=list"><span><img src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/ico_summary.gif">摘要视图</span></a></li>
+            <li id="btnRss"><a href="http://blog.csdn.net/chengyingzhilian/rss/list"><span><img src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/ico_rss.gif">订阅</span></a></li>
+</ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "chengyingzhilian";
+    var blog_address = "http://blog.csdn.net/chengyingzhilian";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";
+</script>
+        
+<div id="body">
+<div id="main">
+<div class="main">
+<div class="notice"> 
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/8472541" target="_blank">
+<font color="blue">
+2013年1月当选微软MVP名单揭晓！   </font></a>
+
+
+
+&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/8424675" target="_blank"><font color="red">CSDN博客频道年终送好礼获奖名单公布！</font></a>
+
+
+<br>
+
+
+
+
+
+<a href="http://vote.blog.csdn.net/details/blogstar" target="_blank">
+<font color="red">2012CSDN博客之星火热出炉！ </font></a>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/csdnstudent/article/details/8077932" target="_blank">
+<font color="red">2013年全国百所高校巡讲讲师招募  </font></a>
+
+
+</div><div id="article_details" class="details">
+    <div class="article_title">
+    <span class="ico ico_type_Repost"></span>
+    <h3>
+        <span class="link_title"><a href="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET.htm">
+        android 获取路径目录方法以及判断目录是否存在，创建目录
+        </a></span>
+    </h3>
+</div>
+
+        
+    <div class="article_manage">
+        <span class="link_categories">
+        分类：
+            <a href="http://blog.csdn.net/chengyingzhilian/article/category/865224">android之恋</a> 
+        </span>
+    <span class="link_postdate">2012-08-06 09:36</span>
+    <span class="link_view" title="阅读次数">1989人阅读</span>
+    <span class="link_comments" title="评论次数"><a href="http://blog.csdn.net/chengyingzhilian/article/details/7833967#comments">评论</a>(1)</span>
+    <span class="link_collect"><a href="javascript:void(0);" onclick="javascript:collectArticle(&#39;android 获取路径目录方法以及判断目录是否存在，创建目录&#39;,&#39;7833967&#39;);return false;" title="收藏">收藏</a></span>
+    <span class="link_report"><a href="http://blog.csdn.net/chengyingzhilian/article/details/7833967#report" onclick="javascript:report(7833967,2);return false;" title="举报">举报</a></span>
+    
+</div>
+
+
+    
+<div id="article_content" class="article_content">
+
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">Environment 常用方法：&nbsp;</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">* 方法：getDataDirectory()</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">解释：返回 File ，获取 Android 数据目录。</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">* 方法：getDownloadCacheDirectory()</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">解释：返回 File ，获取 Android 下载/缓存内容目录。</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">* 方法：getExternalStorageDirectory()</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">解释：返回 File ，获取外部存储目录即 SDCard</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">* 方法：getExternalStoragePublicDirectory(String type)</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">解释：返回 File ，取一个高端的公用的外部存储器目录来摆放某些类型的文件</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">* 方法：getExternalStorageState()</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">解释：返回 File ，获取外部存储设备的当前状态</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">* 方法：getRootDirectory()</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">解释：返回 File ，获取 Android 的根目录</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">public void getSDPath(){&nbsp;</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">File sdDir = null;&nbsp;</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">File sdDir1 = null;</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">File sdDir2 = null;</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">boolean sdCardExist = Environment.getExternalStorageState()&nbsp;</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">.equals(android.os.Environment.MEDIA_MOUNTED); //判断sd卡是否存在&nbsp;</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">if (sdCardExist)&nbsp;</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">{&nbsp;</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">sdDir = Environment.getExternalStorageDirectory();//获取跟目录&nbsp;</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">sdDir1 = Environment.getDataDirectory();</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">sdDir2 =Environment.getRootDirectory();</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">}&nbsp;</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">System.out.println("getExternalStorageDirectory(): "+sdDir.toString());&nbsp;</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">System.out.println("getDataDirectory(): "+sdDir1.toString());&nbsp;</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">System.out.println("getRootDirectory(): "+sdDir2.toString());&nbsp;</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">}&nbsp;</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">//判断一个路径下的文件（文件夹）是否存在</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">public class IsExist {</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">public static void main(String[] args) {</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">isExist("e://12");</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">}</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">/**</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">*&nbsp;</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">* @param path 文件夹路径</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">*/</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">public static void isExist(String path) {</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">File file = new File(path);</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">//判断文件夹是否存在,如果不存在则创建文件夹</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">if (!file.exists()) {</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">file.mkdir();</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">}</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">}</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">}</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">1.在SD卡上创建一个文件夹</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">public class make extends Activity {&nbsp;</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">/** Called when the activity is first created. */&nbsp;</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">@Override&nbsp;</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">public void onCreate(Bundle savedInstanceState) {&nbsp;</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">super.onCreate(savedInstanceState);&nbsp;</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">setContentView(R.layout.main);&nbsp;</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">File sd=Environment.getExternalStorageDirectory();&nbsp;</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">String path=sd.getPath()+"/notes";&nbsp;</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">File file=new File(path);&nbsp;</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">if(!file.exists())&nbsp;</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">file.mkdir();&nbsp;</span><br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<br style="margin:0px; padding:0px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; line-height:19px; text-align:left; background-color:rgb(254,254,242)">
+<span style="margin:0px; padding:0px; line-height:19px; font-family:verdana,&#39;ms song&#39;,宋体,Arial,微软雅黑,Helvetica,sans-serif; font-size:13px; text-align:left; background-color:rgb(254,254,242)">}</span>
+
+</div>
+<div class="share_buttons" id="sharePanel"><span>分享到：</span> <a name="sina" class="share_sina" title="分享到新浪微博"></a><a name="qq" class="share_qq" title="分享到腾讯微博"></a></div>
+<!--192.168.1.236-->
+<div class="article_next_prev">
+    <li class="prev_article"><span>上一篇：</span><a href="http://blog.csdn.net/chengyingzhilian/article/details/7826286">Android的PackageManager和ActivityManager的功能简介</a></li>
+    <li class="next_article"><span>下一篇：</span><a href="http://blog.csdn.net/chengyingzhilian/article/details/7833983">android程序安装详解</a></li>
+</div>
+
+
+    
+</div>
+<div id="ad_cen"><iframe id="ad_frm_0" frameborder="0" scrolling="no" style="border-width: 0px; overflow: hidden; width: 1093px; height: 92px;" src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/ad.htm"></iframe></div>
+<script type="text/javascript">
+    new Ad(4, 'ad_cen');
+</script>
+<div id="comment_title" class="panel_head">查看评论<a name="comments"></a></div>
+<div id="comment_list"><dl class="comment_item comment_topic" id="comment_item_2438518"><dt class="comment_head" floor="1">1楼 <span class="user"><a class="username" href="http://blog.csdn.net/pshchao" target="_blank">pshchao</a> <span class="ptime">2012-11-20 09:37发表</span>  <a href="http://blog.csdn.net/chengyingzhilian/article/details/7833967#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display: none;" commentid="2438518" username="pshchao"> <a href="http://blog.csdn.net/chengyingzhilian/article/details/7833967#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/chengyingzhilian/article/details/7833967#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/pshchao" target="_blank"><img src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/3_pshchao.jpg" width="40" height="40"></a></dd><dd class="comment_body">谢谢楼主分享，受益很大</dd></dl><div class="clear"></div></div>
+<div id="comment_bar" style="display: none;"></div>
+<div id="comment_form"><div class="guest_link">您还没有登录,请<a href="http://passport.csdn.net/account/login?from=http%3A%2F%2Fblog.csdn.net%2Fchengyingzhilian%2Farticle%2Fdetails%2F7833967">[登录]</a>或<a href="http://passport.csdn.net/account/register?from=http%3A%2F%2Fblog.csdn.net%2Fchengyingzhilian%2Farticle%2Fdetails%2F7833967">[注册]</a></div></div>
+<div class="announce">* 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+<script type="text/javascript">
+    var fileName = '7833967';
+    var commentscount = 1;
+    var islock = false
+</script>
+<script type="text/javascript" src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/comment.js"></script>
+<div id="ad_bot"><iframe id="ad_frm_1" frameborder="0" scrolling="no" style="border-width: 0px; overflow: hidden; width: 1093px; height: 170px;" src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/ad(1).htm"></iframe></div>
+<script type="text/javascript">
+    new Ad(5, 'ad_bot');
+</script>
+<div id="report_dialog"></div>
+
+<div id="d-top">
+<a href="http://blog.csdn.net/chengyingzhilian/article/details/7833967#" onclick="javascript:document.body.scrollTop=0;document.documentElement.scrollTop=0;this.blur();return false;" title="回到顶部">
+<img src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/top.png" alt="TOP"></a>
+</div>
+
+
+
+<div class="clear"></div>
+</div>
+</div>
+
+<div id="side">
+<div class="side">
+<div id="panel_Profile" class="panel">
+    <ul class="panel_head"><span>个人资料</span></ul>
+    <ul class="panel_body profile">
+        <div id="blog_userface">
+            <a href="http://my.csdn.net/chengyingzhilian" target="_blank">
+            <img src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/1_chengyingzhilian.jpg" title="访问我的空间" style="max-width:90%">
+            </a>
+            <br>
+            <span><a href="http://my.csdn.net/chengyingzhilian" class="user_name" target="_blank">chengyingzhilian</a></span>
+        </div>
+<div class="interact">
+<!--<a href="#" class="attented" title="已关注"></a>-->
+<a href="http://blog.csdn.net/chengyingzhilian/article/details/7833967#" class="attent" id="span_add_follow" title="[加关注]"></a>
+<a href="http://my.csdn.net/my/letter/send/chengyingzhilian" class="letter" title="[发私信]"></a>
+</div>
+        <div id="blog_medal">
+        <div id="bms_box"><a href="http://medal.blog.csdn.net/allmedal.aspx" target="_blank"><img src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/holdon_s2.gif" onmouseover="m_over_m(this,0)" onmouseout="m_out_m()" alt=""></a></div></div>
+        <ul id="blog_rank">
+            <li>访问：<span>71586次</span></li>
+            <li>积分：<span>1753分</span></li>
+            <li>排名：<span>第4173名</span></li>
+        </ul>
+        <ul id="blog_statistics">
+            <li>原创：<span>77篇</span></li>
+            <li>转载：<span>179篇</span></li>
+            <li>译文：<span>4篇</span></li>
+            <li>评论：<span>38条</span></li>
+        </ul>
+    </ul>
+</div>
+<script type="text/javascript">
+    var _blogger = 'chengyingzhilian';
+</script>
+<script type="text/javascript">
+$(document).ready(function () {
+    var un = getUN().toLowerCase();
+    if (un == _blogger.toLowerCase()) {
+        $('.interact').hide();
+    } else if(un) {
+        var url = "http://my.csdn.net/index.php/follow/check_is_followed/" + encodeURIComponent(un) + "/" + encodeURIComponent(_blogger) + "?jsonpcallback=?";
+        $.getJSON(url, {}, function (data) {
+            if (data.succ == 1 && data.info == 1) {
+                $('#span_add_follow').attr('class', 'attented');
+            } else {
+                $('#span_add_follow').click(guanzhu);
+            }
+        }, 'json');
+    }
+});
+function guanzhu() {
+    var url = "http://my.csdn.net/index.php/follow/do_follow?jsonpcallback=?";
+    $.getJSON(url, { "username": _blogger }, function (data) {
+        if (data.succ == 1) {
+            alert('关注成功！');
+            $('#span_add_follow').attr('class', 'attented').click(function () { return false; });
+        } else {
+            alert(data.msg);
+        }
+    });
+    return false;
+}
+function getUN() {
+    var m = document.cookie.match(new RegExp("(^| )UserName=([^;]*)(;|$)"));
+    if (m) return m[2];
+    else return '';
+}
+</script>
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search" target="_blank">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字"></span>
+        <input id="btnSubmit" type="submit" value="搜索" title="search in blog">
+        <input type="hidden" name="q" id="inputQ">
+        <input type="hidden" name="t" value="blog">
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div><div id="hotarticls" class="panel">
+    <ul class="panel_head"><span>阅读排行</span></ul>
+    <ul class="panel_body itemlist">
+        <li>
+            <a href="http://blog.csdn.net/chengyingzhilian/article/details/7279494" title="android 读写sd卡的权限设置">android 读写sd卡的权限设置</a><span>(6000)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/chengyingzhilian/article/details/8038651" title="铁道部新客票系统设计（三）">铁道部新客票系统设计（三）</a><span>(3526)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/chengyingzhilian/article/details/7558632" title="第三届蓝桥杯java预赛第3题汉诺塔">第三届蓝桥杯java预赛第3题汉诺塔</a><span>(2177)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/chengyingzhilian/article/details/7452082" title="android Rect的使用">android Rect的使用</a><span>(2050)</span>
+        </li>
+        <li>
+            <a href="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET.htm" title="android 获取路径目录方法以及判断目录是否存在，创建目录">android 获取路径目录方法以及判断目录是否存在，创建目录</a><span>(1989)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/chengyingzhilian/article/details/8038648" title="铁道部新客票系统设计（一）">铁道部新客票系统设计（一）</a><span>(1753)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/chengyingzhilian/article/details/6760572" title="成功的向android推送信息——android推技术！">成功的向android推送信息——android推技术！</a><span>(1560)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/chengyingzhilian/article/details/7314851" title="筛选法求素数算法">筛选法求素数算法</a><span>(1446)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/chengyingzhilian/article/details/8038650" title="铁道部新客票系统设计（二）">铁道部新客票系统设计（二）</a><span>(1345)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/chengyingzhilian/article/details/7310841" title="CDMA基站定位获取经纬度">CDMA基站定位获取经纬度</a><span>(1219)</span>
+        </li>
+    </ul>
+</div>
+<div id="panel_Archive" class="panel">
+    <ul class="panel_head"><span>文章存档</span></ul>
+    <ul class="panel_body">
+        <div id="archive_list"><li><a href="http://blog.csdn.net/chengyingzhilian/article/month/2013/01">2013年01月</a><span>(13)</span></li><li><a href="http://blog.csdn.net/chengyingzhilian/article/month/2012/12">2012年12月</a><span>(11)</span></li><li><a href="http://blog.csdn.net/chengyingzhilian/article/month/2012/11">2012年11月</a><span>(14)</span></li><li><a href="http://blog.csdn.net/chengyingzhilian/article/month/2012/10">2012年10月</a><span>(29)</span></li><li><a href="http://blog.csdn.net/chengyingzhilian/article/month/2012/09">2012年09月</a><span>(17)</span></li><span class="hidelist" style="display:none;"><li><a href="http://blog.csdn.net/chengyingzhilian/article/month/2012/08">2012年08月</a><span>(58)</span></li><li><a href="http://blog.csdn.net/chengyingzhilian/article/month/2012/07">2012年07月</a><span>(10)</span></li><li><a href="http://blog.csdn.net/chengyingzhilian/article/month/2012/06">2012年06月</a><span>(14)</span></li><li><a href="http://blog.csdn.net/chengyingzhilian/article/month/2012/05">2012年05月</a><span>(7)</span></li><li><a href="http://blog.csdn.net/chengyingzhilian/article/month/2012/04">2012年04月</a><span>(37)</span></li><li><a href="http://blog.csdn.net/chengyingzhilian/article/month/2012/03">2012年03月</a><span>(29)</span></li><li><a href="http://blog.csdn.net/chengyingzhilian/article/month/2012/02">2012年02月</a><span>(13)</span></li><li><a href="http://blog.csdn.net/chengyingzhilian/article/month/2011/09">2011年09月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/chengyingzhilian/article/month/2011/08">2011年08月</a><span>(7)</span></li></span><div id="archive_list_button" class="list_closed">展开</div></div>
+    </ul>
+</div>
+<div id="hotarticls2" class="panel">
+    <ul class="panel_head"><span>评论排行</span></ul>
+    <ul class="panel_body itemlist">
+        <li>
+            <a href="http://blog.csdn.net/chengyingzhilian/article/details/6686074" title="写在前面的话——记一个有点java基础的菜鸟的成长！">写在前面的话——记一个有点java基础的菜鸟的成长！</a><span>(9)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/chengyingzhilian/article/details/8026109" title="android AlertDialog中EditText无法显示软键盘问题的解决方案">android AlertDialog中EditText无法显示软键盘问题的解决方案</a><span>(3)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/chengyingzhilian/article/details/7282397" title="AsyncTask的用法">AsyncTask的用法</a><span>(2)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/chengyingzhilian/article/details/7310841" title="CDMA基站定位获取经纬度">CDMA基站定位获取经纬度</a><span>(2)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/chengyingzhilian/article/details/7310977" title="cdmaLocation与gsmlocation的区别 lbs定位">cdmaLocation与gsmlocation的区别 lbs定位</a><span>(2)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/chengyingzhilian/article/details/6760572" title="成功的向android推送信息——android推技术！">成功的向android推送信息——android推技术！</a><span>(2)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/chengyingzhilian/article/details/7872096" title="UIWindow &amp; UIWindowLevel详解">UIWindow &amp; UIWindowLevel详解</a><span>(2)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/chengyingzhilian/article/details/7871979" title="正确使用PresentModalViewController弹出框">正确使用PresentModalViewController弹出框</a><span>(2)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/chengyingzhilian/article/details/7452082" title="android Rect的使用">android Rect的使用</a><span>(2)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/chengyingzhilian/article/details/7826133" title="android运行底层linux外部命令的实现">android运行底层linux外部命令的实现</a><span>(1)</span>
+        </li>
+    </ul>
+</div>
+<div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+    <a href="http://blog.csdn.net/chengyingzhilian/article/details/7872096#comments">UIWindow &amp; UIWindowLevel详解</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/yuanxiaowu" class="user_name">yuanxiaowu</a>:
+不错，学习了！！
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/chengyingzhilian/article/details/7871979#comments">正确使用PresentModalViewController弹出框</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/chengyingzhilian" class="user_name">chengyingzhilian</a>:
+@jj89757hhb:没有。还可以加代码快呢。
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/chengyingzhilian/article/details/7796430#comments">Android矩阵原理详解（Matrix,ColorMatrix）</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/myf411760328" class="user_name">myf411760328</a>:
+hao
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/chengyingzhilian/article/details/7871979#comments">正确使用PresentModalViewController弹出框</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/jj89757hhb" class="user_name">jj89757hhb</a>:
+dismissModalViewControllerAnimated:    这个函数有放弃吗？
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/chengyingzhilian/article/details/7872096#comments">UIWindow &amp; UIWindowLevel详解</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/jj89757hhb" class="user_name">jj89757hhb</a>:
+不错
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/chengyingzhilian/article/details/7525410#comments">Ubuntu下adb识别真机的方法介绍（出现乱码）</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/Joesn_Y" class="user_name">Joesn_Y</a>:
+亲测，不可用！
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/chengyingzhilian/article/details/7833967#comments">android 获取路径目录方法以及判断目录是否存在，创建目录</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/pshchao" class="user_name">pshchao</a>:
+谢谢楼主分享，受益很大
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/chengyingzhilian/article/details/7894276#comments">UIView详解</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/liandyii" class="user_name">liandyii</a>:
+mark
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/chengyingzhilian/article/details/8026109#comments">android AlertDialog中EditText无法显示软键盘问题的解决方案</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/ly513782705" class="user_name">ly513782705</a>:
+没有，我只是看了你的方案二想到的。测了一下，Timer不能用，只能用Handler，UI的交互事件处...
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/chengyingzhilian/article/details/8026109#comments">android AlertDialog中EditText无法显示软键盘问题的解决方案</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/chengyingzhilian" class="user_name">chengyingzhilian</a>:
+@ly513782705:奥。原来还有这种方法。不错。高人啊。。
+    </p>
+    </li>
+</ul>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+
+<div class="clear"></div>
+</div>
+<script type="text/javascript" src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/shCore-src.js"></script>
+<script type="text/javascript" src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/ZeroClipboard.js"></script>
+<script type="text/javascript" src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/article_code.js"></script>
+<script type="text/javascript" src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/cnick.js"></script>
+
+<script type="text/javascript" src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/show.js"></script>
+<script type="text/javascript" src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/showblogmedal.ashx"></script>
+
+<script type="text/javascript" src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/publib_footer.js"></script><link rel="stylesheet" type="text/css" href="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/pub_footer_2012.css"><div class="pub_footerall"><dl><dt></dt> <dd><a href="http://www.csdn.net/company/about.html" target="_blank">公司简介</a>|<a href="http://www.csdn.net/company/recruit.html" target="_blank">招贤纳士</a>|<a href="http://www.csdn.net/company/marketing.html" target="_blank">广告服务</a>|<a href="http://www.csdn.net/company/account.html" target="_blank">银行汇款帐号</a>|<a href="http://www.csdn.net/company/contact.html" target="_blank">联系方式</a>|<a href="http://www.csdn.net/company/statement.html" target="_blank">版权声明</a>|<a href="http://www.csdn.net/company/layer.html" target="_blank">法律顾问</a>|<a href="mailto:webmaster@csdn.net">问题报告</a></dd><dd>京&nbsp;ICP&nbsp;证&nbsp;070598&nbsp;号</dd><dd>北京创新乐知信息技术有限公司 版权所有</dd><dd>世纪乐知(北京)网络技术有限公司 提供技术支持</dd><dd>江苏乐知网络技术有限公司 提供商务支持</dd><dd><img src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/ico_email.gif" alt="" title=""> 联系邮箱：webmaster(at)csdn.net</dd><dd>Copyright © 1999-2012, CSDN.NET, All Rights Reserved&nbsp;<a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><img src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/gongshang_logos.gif" alt="GongshangLogo" title=""></a></dd></dl></div><script type="text/javascript" charset="utf-8" src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/tracking.js"></script>
+
+<script type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script><img src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/pv.aspx" border="0" width="0" height="0">
+<script type="text/javascript" src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/counter.js"></script><script type="text/javascript" charset="UTF-8" src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/msg.popup.js"></script>
+
+<!--ad.csdn.net-->
+<script type="text/javascript" src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/ad-blog.js"></script><script type="text/javascript" src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/ad-ms457.js"></script>
+
+
+
+
+</div>
+
+<iframe style="width: 1px; height: 1px; position: absolute; visibility: hidden;" src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/ie10-bow-bloghomepage-960-90-0121.htm"></iframe><link href="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/message_pop.css" rel="stylesheet" type="text/css"><div style="display: block;" id="_popup_msg_container">
+
+<div wistate="max" id="im_popupWindow_miniMsg" class="im_popupWindow" style="display: block; height: 240px;">
+	<h6 class="wi_draggable"><span>0元学4个月软件开发！
+</span><a onclick="_message_tips_pop(&#39;down&#39;);return false;"><img alt="close" class="founctionpic3" src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/pic_close.gif"></a></h6>
+    <div id="im_popupWindow_miniMsgContent" class="wi_content">
+		<div class="kuai">
+			<div style="width:280px;"><a href="http://edu.csdn.net/AD1.shtml?from=13122webim" target="_blank"><img src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/Catch750(12-24-17-49-50)(3).jpg" alt="" border="0" style="border:0;" title=""></a></div>
+		</div>
+	</div>
+	<div class="content_qq"><span onclick="window.open(&#39;https://itunes.apple.com/cn/app/cheng-xu-yuan-za-zhi/id544773337&#39;)" target="_blank">程序员杂志ipad1.2版发布送半年杂志</span>
+ </div>
+ 
+ 
+</div>
+</div><img src="./android 获取路径目录方法以及判断目录是否存在，创建目录 - 承影 - 博客频道 - CSDN.NET_files/count_new.php" style="display: none;"></body></html>
